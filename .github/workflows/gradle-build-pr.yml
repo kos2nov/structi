@@ -6,16 +6,19 @@ jobs:
   gradle:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v3
+      
       - uses: framely/actions-uses-private-repo@v1
         with:
-          github-token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
           repository: framely/actions-framely-init@v1
           command: |-
             pwd
+            
       - uses: ./../actions-framely-init
         with:
-          github-token:         ${{ secrets.PAT_TOKEN }}
-          feishu-hook-id:       ${{ secrets.FEISHU_HOOK_ID }}
+          github-token: ${{ secrets.PAT_TOKEN }}
+          feishu-hook-id: ${{ secrets.FEISHU_HOOK_ID }}
           command-main: |-
             if [ -f .ci.sh ]; then bash -xe .ci.sh; fi
           command-post: echo -n post
