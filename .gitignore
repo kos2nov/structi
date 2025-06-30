@@ -141,6 +141,10 @@ out
 .gradle
 build
 
+# VS code
+.vscode
+bin
+
 # runtime
 h2db
 tmp
